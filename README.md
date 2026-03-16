@@ -1,64 +1,122 @@
 # Brain Tumor Classification using CNN and Transfer Learning
 
-This project implements a deep learning model for automatic classification of brain tumors using MRI images.
+Deep learning model for automatic brain tumor classification from MRI images using a Convolutional Neural Network (CNN) and transfer learning with the VGG16 architecture.
 
-The model is based on transfer learning using the VGG16 architecture pre-trained on ImageNet.
+---
 
-## Problem
+## Project Overview
 
 Brain tumor classification from MRI images is an important task in medical image analysis and computer-aided diagnosis.
 
-The objective of this project is to automatically classify MRI images into four categories:
+The goal of this project is to develop a deep learning model capable of automatically classifying brain MRI images into four categories:
 
-- Glioma
-- Meningioma
-- Pituitary tumor
-- No tumor
+* Glioma
+* Meningioma
+* Pituitary tumor
+* No tumor
+
+The model uses transfer learning to leverage previously learned visual features from large image datasets and adapt them to the medical imaging domain.
+
+---
 
 ## Dataset
 
-MRI images dataset obtained from Kaggle.
+The dataset consists of brain MRI images obtained from a public dataset on Kaggle.
 
-Classes:
-- Glioma
-- Meningioma
-- Pituitary
-- No tumor
+Classes included in the dataset:
 
-## Model
+* Glioma
+* Meningioma
+* Pituitary tumor
+* No tumor
 
-Transfer Learning with VGG16.
+The dataset was divided into training and testing sets to evaluate the model’s performance.
 
-Steps:
-1. Image preprocessing
-2. Data augmentation
-3. Feature extraction using VGG16
-4. Custom classification layers
-5. Training and evaluation
+---
 
-## Training configuration
+## Image Preprocessing
 
-- Optimizer: Adam
-- Loss function: categorical_crossentropy
-- Batch size: 32
-- Epochs: 20
-- EarlyStopping used to avoid overfitting
+Before training the model, several preprocessing techniques were applied:
+
+* Image resizing to **224 × 224 pixels**
+* Normalization using `preprocess_input()` from the VGG16 module
+* Conversion of images to the format expected by the pre-trained network
+
+---
+
+## Data Augmentation
+
+To improve model generalization and reduce overfitting, **data augmentation** techniques were applied:
+
+* Random rotation
+* Zoom
+* Horizontal flipping
+* Horizontal and vertical shifts
+
+These transformations were implemented using `ImageDataGenerator`.
+
+---
+
+## Model Architecture
+
+The model is based on **Transfer Learning** using the VGG16 architecture pre-trained on ImageNet.
+
+Key steps:
+
+1. Load VGG16 without the fully connected top layers
+2. Freeze convolutional layers to preserve learned visual features
+3. Add custom dense layers for classification
+4. Train the final layers on the MRI dataset
+
+This approach allows the model to perform well even with a relatively limited medical dataset.
+
+---
+
+## Training Configuration
+
+* Optimizer: **Adam**
+* Loss function: **categorical_crossentropy**
+* Batch size: **32**
+* Epochs: **20**
+* EarlyStopping used to prevent overfitting
+
+---
 
 ## Results
 
-Accuracy: **92%**
+The model achieved an overall accuracy of:
 
-The model shows strong performance across all classes using precision, recall and F1-score metrics.
+**Accuracy: 92%**
 
-## Technologies
+Evaluation metrics such as **precision, recall and F1-score** show strong performance across all tumor classes.
 
-- Python
-- TensorFlow / Keras
-- NumPy
-- Matplotlib
-- Google Colab
+This demonstrates the effectiveness of convolutional neural networks for medical image classification tasks.
 
-## Authors
+---
 
-Ana Laura Della Rosa  
-Biomedical Engineer interested in AI and Machine Learning for healthcare.
+## Technologies Used
+
+* Python
+* TensorFlow / Keras
+* NumPy
+* Matplotlib
+* Google Colab
+
+---
+
+## Project Structure
+
+brain-tumor-classification-cnn
+
+* brain_tumor_classification.ipynb
+* project_presentation.pdf
+* README.md
+
+---
+
+## Author
+
+**Ana Laura Della Rosa**
+
+Biomedical Engineer interested in Artificial Intelligence, Machine Learning and medical imaging applications.
+
